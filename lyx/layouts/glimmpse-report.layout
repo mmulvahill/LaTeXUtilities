@@ -1,0 +1,24 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[glimmpse-report]{report (Glimmpse)}
+# Article textclass definition file. Taken from initial LyX source code
+# Author : Matthias Ettrich <ettrich@informatik.uni-tuebingen.de>
+# Transposed by Pascal André <andre@via.ecp.fr>
+# Heavily modifed and enhanced by serveral developers.
+
+Format 35
+Input stdclass.inc
+
+SecNumDepth             3
+TocDepth                3
+
+NoStyle Chapter
+NoCounter chapter
+NoStyle Chapter*
+
+Preamble
+  \GLIMMPSEVersion{<enter-GLIMMPSEVersion-in-preamble>}
+  \JavaStatisticsVersion{<enter-JavaStatisticsVersion-in-preamble>}
+  \doctitle{<enter-doctitle-in-preamble>}
+  \docdate{<enter-docdate-in-preamble>}
+  \docauthor{<enter-docauthor-in-preamble>}
+EndPreamble

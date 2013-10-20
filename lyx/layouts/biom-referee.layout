@@ -1,0 +1,199 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[biom]{biom - referee format}
+# Article textclass definition file. Taken from initial LyX source code
+# Author : Matthias Ettrich <ettrich@informatik.uni-tuebingen.de>
+# Transposed by Pascal André <andre@via.ecp.fr>
+# Heavily modifed and enhanced by serveral developers.
+
+ClassOptions
+    Other useAMS
+    Other usenatbib
+    Other referee
+End
+
+Format 35
+Input stdclass.inc
+
+SecNumDepth             3
+TocDepth                3
+
+NoStyle Chapter
+NoCounter chapter
+NoStyle Chapter*
+
+Style Title
+	Margin                Static
+	LatexType             Command
+	Category              FrontMatter
+	InTitle               1
+	LatexName             title
+	ParSkip               0.4
+	ItemSep               0
+	TopSep                0
+	BottomSep             1
+	ParSep                1
+	Align                 Left
+	LabelType             No_Label
+	Font
+	  Size                Largest
+	  Series			  Bold
+	EndFont
+	HTMLTag               h1
+	HTMLTitle             true
+End
+
+Style RunningHeader
+	Margin			Dynamic
+	LatexType		Command
+	LatexName		runninghead
+	Category		FrontMatter
+	InTitle			1
+	Align			Left
+	NextNoIndent		1
+	BottomSep		0.5
+	ParSkip			0.4
+	Align			Block
+	LabelSep		xx
+	LabelType		Static
+	LabelString		"running header:"
+	LabelFont
+	  Series		Bold
+	EndFont		
+End
+
+Style CorrAddress
+	Margin			Dynamic
+	LatexType		Command
+	LatexName		corraddr
+	Category		FrontMatter
+	InTitle			1
+	Align			Left
+	NextNoIndent	1
+	BottomSep		0.5
+	ParSkip			0.4
+	Align			Block
+	LabelSep		xx
+	LabelType		Static
+	LabelString		"Corresponding author address:"
+	LabelFont
+	  Series		Bold
+	EndFont		
+End
+
+Style ContractGrant
+	Margin			Dynamic
+	LatexType		Command
+	LatexName		cgs
+	Category		FrontMatter
+	InTitle			1
+	Align			Left
+	NextNoIndent	1
+	BottomSep		0.5
+	ParSkip			0.4
+	Align			Block
+	LabelSep		xx
+	LabelType		Static
+	LabelString		"Contract or grant sponsor:"
+	LabelFont
+	  Series		Bold
+	EndFont		
+End
+
+Style Abstract
+	Category			  FrontMatter
+	Margin                Static
+	LatexType             Environment
+	LatexName             abstract
+	NextNoIndent          1
+	InTitle               1
+	ItemSep               0
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0
+	Align                 Left
+	LabelType             No_label
+	Font
+	  Size                Small
+	EndFont
+End
+
+
+Style Author
+	Margin			Static
+	LatexType		Command
+	Category		FrontMatter
+	InTitle			1
+	OptionalArgs	1
+	LatexName		author
+	LabelSep		xxx
+	ParSkip			0.4
+	TopSep			1.3
+	BottomSep		0.7
+	ParSep			0.7
+	Align			Left
+	LabelType		No_Label
+	Font
+	  Size			Large
+	EndFont
+End
+
+Style Address
+	Margin			Dynamic
+	LatexType		Command
+	LatexName		address
+	Category		FrontMatter
+	InTitle			1
+	Align			Left
+	NextNoIndent		1
+	BottomSep		0.5
+	ParSkip			0.4
+	Align			Block
+	LabelSep		xx
+	LabelType		Static
+	LabelString		"Address:"
+	LabelFont
+	  Series		Bold
+	EndFont		
+End
+
+Style Keywords
+	Margin			Dynamic
+	LatexType		Command
+	LatexName		keywords
+	Category		FrontMatter
+	InTitle			1
+	Align			Left
+	NextNoIndent		1
+	BottomSep		0.5
+	ParSkip			0.4
+	Align			Block
+	LabelSep		xx
+	LabelType		Static
+	LabelString		"Keywords:"
+	LabelFont
+	  Series		Bold
+	EndFont		
+End
+
+
+Style Part
+	Align                 Left
+	AlignPossible         Left
+	TopSep                2
+	BottomSep             1.5
+	Font
+	  Size                Larger
+	EndFont
+	TocLevel 0
+End
+
+
+Style Part*
+	Align                 Left
+	AlignPossible         Left
+	TopSep                2
+	BottomSep             1.5
+	Font
+	  Size                Larger
+	EndFont
+End
