@@ -53,14 +53,27 @@ End
 SecNumDepth             3
 TocDepth                3
 
+
+
+
 Preamble
-  \title{Very Important Title}
-  \author{Student}
+  \title{Dissertation Title}
+  \author{Full name}
+  \authorLast{Last}
+  \authorFirst{First}
+  \authorMiddle{Middle Initial}
+  \education{List author's degrees}
+  \proposalDate{Date of Proposal Defense}
+  \program{PhD Program's Full Name}
   \date{Spring of Some Year}
-  \committeeChair{George, PhD}
-  \advisor{Gracie, PhD}
-  \committeeMembers{Larry, PhD \\
-  Curly, PhD \\
-  Moe, PhD
+  \committeeChair{Committee Chair Name, PhD}
+  \advisor{My Advisor, PhD}
+  \advisorTitle{Advisor's Title}
+  \committeeMembers{Committee Member 1, PhD \\
+  Committee Member 2, PhD \\
+  Committee Member 3, PhD
   }
 EndPreamble
+
+
+

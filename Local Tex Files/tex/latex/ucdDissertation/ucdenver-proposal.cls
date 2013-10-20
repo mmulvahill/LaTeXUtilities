@@ -27,37 +27,129 @@
 \LoadClass[12pt]{report}
 
 %% required packages
-\RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,geometry,fancyhdr,extramarks,lastpage,chngpage}
+\RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,geometry,extramarks,lastpage,chngpage}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{fancyhdr}
 
 %%
 %% The following preamble elements are required to properly create
 %% the title page
 %%
 %% definitions from calling document
+\newcommand{\authorLast}[1]{\def\@authorLast{#1}}
+\newcommand{\authorFirst}[1]{\def\@authorFirst{#1}}
+\newcommand{\authorMiddle}[1]{\def\@authorMiddle{#1}}
+\newcommand{\education}[1]{\def\@education{#1}}
+\newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\advisor}[1]{\def\@advisor{#1}}
+\newcommand{\advisorTitle}[1]{\def\@advisorTitle{#1}}
 \newcommand{\committeeChair}[1]{\def\@committeeChair{#1}}
 \newcommand{\committeeMembers}[1]{\def\@committeeMembers{#1}}
+\newcommand{\proposalDate}[1]{\def\@proposalDate{#1}}
+\newcommand{\acknowledgements}[1]{\def\@acknowledgements{#1}}
+\newcommand{\preface}[1]{\def\@preface{#1}}
 
-%% Formatting for title page
+
+%% hack to make prevent page numbers from restarting in TOC
+\newcounter{fmpage}
+
+%% set margins
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+\pagestyle{fancy} %
+\fancyhf{} %
+\rfoot{\thepage}                  %
+\renewcommand{\headrulewidth}{0pt} %
+
+
+%% setup the document
+\AtBeginDocument{
+\pagenumbering{roman}
+  \begin{titlepage}
+  \maketitle
+  \end{titlepage}
+  \addtocounter{page}{1}
+  \makecommitteepage
+  \makeprefacepage
+  \makeacknowledgementspage
+  \doublespacing
+  \tableofcontents
+  \newpage
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
+
+}
+
+
+%% Format the title page
 \renewcommand{\maketitle}{
 \vspace*{\fill}
 \begin{center}
   {\LARGE\bf\@title} \\[0.5in]
-  by \\[0.25in] 
-  \@author \\[0.25in] 
+  by \\
+  \@authorFirst{} \@authorMiddle{} \@authorLast{} \\
+  \@education \\[3in] 
+  A dissertation proposal submitted to the \\
+  Faculty of the Graduate School of the \\
+  University of Colorado, Denver in partial fulfillment \\
+  of the requirements for the degree of \\
+  \@program. \\
   \@date \\
-  \vskip 12em%
-  \@committeeChair, Chair \\
-  \@advisor, Advisor \\
-  \@committeeMembers \\[0.5in]
-  A dissertation proposal submitted in partial fullfillment
-  of the requirements for the degree of 
-  Doctor of Philosophy. \\
-  Department of Biostatistics and Informatics \\
-  University of Colorado Denver
 \end{center} 
 \vspace*{\fill}
+  
+}
+
+%% formatting committee page
+\newcommand{\makecommitteepage}{
+  \newpage
+  \vspace*{\fill}
+  \begin{center}
+    This dissertation proposal for the degree of 
+    \@program by \\
+    \@authorFirst \@authorMiddle \@authorLast \\
+    is being submitted for approval \\
+    by \\[3in]
+    \@committeeChair, Chair \\
+    \@advisor, Advisor \\
+    \@committeeMembers \\[1in]
+  \end{center}
+  \begin{flushright}
+    \@proposalDate
+  \end{flushright}
+  \vspace*{\fill}
+  \setcounter{fmpage}{\value{page}}%
+  \addtocounter{fmpage}{1}%
+}
+
+%% formatting committee page
+\newcommand{\makeprefacepage}{
+  \newpage
+  \begin{flushleft}
+  \@authorLast{}, \@authorFirst{} \@authorMiddle{} (\@program) \\
+  \@title \\
+  Thesis directed by \@advisorTitle{} \@advisor
+  \end{flushleft}
+  \medskip
+  \begin{center}
+  {\bf PREFACE}\\
+  \end{center}
+  \@preface
+
+  \setcounter{fmpage}{\value{page}}%
+  \addtocounter{fmpage}{1}%
+}
+
+%% formatting committee page
+\newcommand{\makeacknowledgementspage}{
+  \newpage
+  \begin{center}
+  {\bf ACKNOWLEDGEMENTS} \\
+  \end{center}
+  \@acknowledgements
+
+  \setcounter{fmpage}{\value{page}}%
+  \addtocounter{fmpage}{1}%
 }
 
 %% colors
@@ -89,6 +181,7 @@
 }
 \renewcommand\contentsname{Table of Contents}
 \renewcommand\tableofcontents{%
+    \setcounter{page}{\value{fmpage}}%
     \if@twocolumn
       \@restonecoltrue\onecolumn
     \else
@@ -104,20 +197,6 @@
 
 
 
-
-%% setup the document
-\AtBeginDocument{
-  \begin{titlepage}
-  \maketitle
-  \end{titlepage}
-  \doublespacing
-  \tableofcontents
-  \newpage
-
-}
-%% set margins
-\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
-
 %% we override the abstract command to avoid a new page
 \renewenvironment{abstract}{%
     \small
@@ -126,6 +205,7 @@
     \end{center}%
     \quotation
 }
+
 
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
