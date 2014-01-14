@@ -1,0 +1,36 @@
+\batchmode
+\makeatletter
+\def\input@path{{\string"C:/Users/kreidles/Documents/My Dropbox/Mixed Model Project/Latex/lyx/knitrLyxExample/\string"/}}
+\makeatother
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[authoryear]{natbib}
+\usepackage{babel}
+\begin{document}
+<<setup, echo=FALSE, cache=FALSE>>=
+#source('knitrTestChunk.R')
+read_chunk('knitrTestChunk.R')
+@
+
+More knitr stuff
+
+<<echo=FALSE, cache=FALSE, comment="">>=
+x=1:10
+cat mean(x)
+@
+
+TEsting knitr . Here is a citation\citep{coffey_properties_2003}
+
+<<Q1>>=
+@
+
+Random plot I will cite it \citep{edwards_r2_2008}
+
+<<Q2>>=
+@
+
+\bibliographystyle{plain}
+\bibliography{0C__Users_kreidles_Documents_My_Dropbox_Mixed_M___ect_Latex_lyx_knitrLyxExample_ExportedItems}
+
+\end{document}

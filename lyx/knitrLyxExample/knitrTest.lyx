@@ -84,6 +84,62 @@ read_chunk('knitrTestChunk.R')
 
 \begin_layout Plain Layout
 
+library(xtable)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+More knitr stuff
+\end_layout
+
+\begin_layout Standard
+jkshdcjkshdc sdjkchsdc 
+\end_layout
+
+\begin_layout Subsection
+jshdcjkshdc
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, cache=FALSE, comment="", results='asis'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x<-1:10
+\end_layout
+
+\begin_layout Plain Layout
+
+y<-x^2
+\end_layout
+
+\begin_layout Plain Layout
+
+mytable <- data.frame(x,y)
+\end_layout
+
+\begin_layout Plain Layout
+
+xtable(caption="My Caption", mytable, digits=0)
+\end_layout
+
+\begin_layout Plain Layout
+
 @
 \end_layout
 

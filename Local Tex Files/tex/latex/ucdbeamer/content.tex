@@ -1,0 +1,260 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\section{Introduction}
+\begin{frame}[t]{Brand Identity Standards}
+   The \textbf{\color{CUBlue}University of Colorado Denver Brand Identity Standards} provides direction for messaging, design and content of university print and online publications, stationary, signage and other expressions.
+   \vskip1em
+   Adhering to these standards will help ensure that communications from every university group maintain a clear and uniform message that best represents the image and brand of our two campuses and the University of Colorado as a whole.
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\section{Our Brand}
+\subsection{Overview}
+\begin{frame}[t]{Our Brand}
+   Our brand is much more than a name or a logo. Every point of contact we have
+   with our audience---students, faculty, staff, alumni, donors, and the
+   world---builds upon the perception of who we are as a university, the things
+   we do to fulfill our mission, and why we are important to our stakeholders.
+   \vskip1em
+   Our brand serves as our North Star for the decisions we make and the way we
+   communicate with our external and internal community. It is our promise, our
+   story, our driving force. It is what the world experiences when they
+   interact with us, and the benchmark with which we measure our success.
+   \vskip1em
+   In short, our brand is what makes our university unique.
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\subsection{Brand Platform}
+\begin{frame}[t]{Brand Position}
+   The University of Colorado Denver | Anschutz Medical Campus is a dynamic
+   university -- comprehensive in scope, entrepreneurial in spirit, and
+   innovative at heart. We believe in forward movement -- the promise of
+   opportunity, the power of creativity, the impact of discovery. From the
+   heart of downtown Denver to our new state-of-the-art health sciences campus,
+   we are uniquely positioned to impact the region, the nation and the world.
+   \vskip1em
+   Our tradition is in the untraditional: Our students contribute to and thrive in
+   a diverse cultural, professional and experiential setting; our faculty and
+   researchers elevate the definitions of collaboration, inquiry and patient care;
+   our alumni and supporters engage with us in fulfilling the shared vision of a
+   better world.
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\section{Theme Usage}
+\begin{frame}[t,fragile]
+    \frametitle{How to use the theme}
+    %\begin{frame}[t,fragile]{How to use the theme}
+    \begin{itemize}
+        \item Install Beamer
+            \begin{itemize}
+                \item Some distros have a \verb!latex-beamer! package
+            \end{itemize}
+        \item Read the Beamer documentation
+            \begin{itemize}
+                \item \verb!/usr/share/doc/latex-beamer/beameruserguide.pdf.gz! if you are
+                    using Debian
+                \item \verb!doc/beameruserguide.pdf! in the source package
+            \end{itemize}
+        \item Install the theme
+            \begin{itemize}
+                \item If using Linux
+                    \begin{itemize}
+                        \item \verb!mkdir -p ~/texmf/tex/latex/beamer/UCDenver!\\
+                        \item \verb!mv *.sty ~/texmf/tex/latex/beamer/UCDenver!
+                        \item \verb!texhash!
+                    \end{itemize}
+                \item If using TexLive on Mac OS X
+                    \begin{itemize}
+                        \item \verb!mkdir -p ~/Library/texmf/tex/latex/beamer/UCDenver!\\
+                        \item \verb!mv *.sty ~/Library/texmf/tex/latex/beamer/UCDenver!
+                        \item \verb!texhash!
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\begin{frame}[t,fragile]
+    \frametitle{How to use the theme}
+    %\begin{frame}[t,fragile]{How to use the theme}
+    \begin{itemize}
+        \item Changing from black to white (or vice versa)
+            \begin{itemize}
+                \item Within the preamble you can specify either the black theme or the white
+                    theme by changing the logical variable \verb!useblack!.
+                    \begin{itemize}
+                        \item \verb!\useblacktrue! : black background for title page header with correct logo and white on black footer
+                        \item \verb!\useblackfalse! : white background for title page header with correct logo and black on white footer
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\subsection{Files}
+\begin{frame}[t,fragile]
+    \frametitle{Theme files}
+\begin{itemize}
+\item Themes are composed by sub-themes for single features
+\item Inner themes define how the title page, the bullet lists, margins,
+      etc. work
+  \begin{itemize}
+    \item \verb!beamerinnerthemefancy.sty!
+  \end{itemize}
+\item Outer themes define how headers and footers look like
+  \begin{itemize}
+    \item \verb!beamerouterthemedecolines.sty!
+  \end{itemize}
+\item The color theme defines the colors to be used in outer and inner themes
+  \begin{itemize}
+    \item \verb!beamercolorthemeucdblack.sty!: black and gold footers and headers
+    \item \verb!beamercolorthemeucdwhite.sty!: white and gold footers and headers
+  \end{itemize}
+\item Global themes just include inner, outer and color themes
+  \begin{itemize}
+    \item \verb!beamerthemeUCDenver.sty!
+  \end{itemize}
+  \item This is a heavily modified theme based on the Torino theme by Marco Barisione
+\end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\subsection{Configuration}
+\begin{frame}[t,fragile]
+    \frametitle{Configuring the theme}
+   \begin{itemize}
+      \item This beamer theme can be configured with options between \verb![! and
+         \verb!]!
+         \begin{itemize}
+            \item \verb!\usetheme[option1 = value, option2 = value]{UCDenver}!
+         \end{itemize}
+      \item Valid options are: 
+         \begin{itemize}
+            \item \verb!pageofpages! 
+            \item \verb!bullet!
+            \item \verb!titleline! 
+            \item \verb!alternativetitlepage!
+            \item \verb!titlepagelogo!
+            \item \verb!headerlogo!
+            \item \verb!watermark!
+            \item \verb!watermarkheight!
+            \item \verb!watermarkheightmult!
+         \end{itemize}
+      \item If you do not specify any option, you get
+         \begin{itemize}
+            \item Simple title page
+            \item No watermark or logo
+            \item Black color theme
+            \item Squares for bullet lists
+         \end{itemize}
+   \end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+\begin{frame}[t,fragile]
+    \frametitle{Configuring the theme}
+   \begin{itemize}
+      \item A logo, shown in the upper right corner, can be choosen with the
+         \verb!\logo! command
+         \begin{itemize}
+            \item \verb!\logo{\includegraphics[height=50px]{logo-image}}!
+         \end{itemize}
+      \item The official colors have been defined as: \verb!CUGold, CULightGray, CUDarkGray, CUBlue!
+   \end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\begin{frame}[t,fragile]
+    \frametitle{Alternative title page}
+\begin{itemize}
+\item A fancy title page can be enabled with the \verb!alternativetitlepage!
+      option
+\item You can put a logo in the title page, just pass the file name using the
+      \verb!titlepagelogo! option
+\item Remember to use a plain and top-aligned frame when using alternative title
+      pages:\\
+      \vskip1ex
+      \verb!\begin{frame}[t,plain]!\\
+      \verb!\titlepage!\\
+      \verb!\end{frame}!
+\end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\subsection{Watermark}
+\begin{frame}[t,fragile]
+    \frametitle{Watermark}
+\begin{itemize}
+\item A watermark can be shown in the bottom right corner of frames
+\item Use the \verb!watermark! option to set name of the image file
+\item The \verb!watermarkheight! option specifies the height of the watermark
+      image
+\item It's a good idea to have a big image and shrink it, so it looks good
+      when the slide is full screen
+\item If the image height in the slide is not the same as the original one,
+      you have to use the \verb!watermarkheightmult! option
+  \begin{itemize}
+  \item For example, if the image is 400 pixel tall but you want it to
+        occupy only 100 pixels, use
+        \verb![watermarkheight=100px, watermarkheightmult=4]!
+  \item It's ugly but I don't know how to fix it
+  \end{itemize}
+\end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+
+\watermarkoff
+\begin{frame}[t,fragile]
+    \frametitle{Disabling the watermark}
+\begin{itemize}
+\item You may want to disable the watermark on some frames
+  \begin{itemize}
+  \item For example, an image could partially cover the watermark, with ugly
+        results
+  \end{itemize}
+\item The \verb!\watermarkoff! command can be used to disable the watermark
+      in the following frames
+\item The \verb!\watermarkon! command restores the watermark in the following
+      frames
+\item If you did not specify a watermark, nothing happens
+\vskip5ex
+\item \verb!\watermarkoff! was used for this frame
+\end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --
+\watermarkon
+
+\subsection{Miscellaneous}
+\begin{frame}[t,fragile]
+    \frametitle{Other options}
+\begin{itemize}
+\item The \verb!pageofpages! option defines the string between the current
+      page number and the total page count
+  \begin{itemize}
+  \item The default is ``/''
+  \item The example files set \verb!pageofpages! to ``of''
+  \end{itemize}
+\item The \verb!bullet! option can be used to choose the symbol used in
+      bullet lists
+  \begin{itemize}
+  \item \verb!square!: A filled square
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\blacksquare$}}) for
+        first and third level items, an empty square
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\square$}}) for
+        second level items
+  \item \verb!circle!: A filled circle ({\usebeamercolor[fg]{item}$\bullet$})
+        for first and third level items, an empty circle
+        ({\usebeamercolor[fg]{item}$\circ$}) for second level items
+  \item The default value is \verb!square!
+  \end{itemize}
+\item If the \verb!titleline! option is set to \verb!true!, a horizontal line
+      is drawn below the title
+\end{itemize}
+\end{frame}
+% --------------------------------------------------- Slide --

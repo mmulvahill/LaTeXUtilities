@@ -22,10 +22,10 @@
 %% given in the file `manifest.txt'.
 %% 
 %%
-%% $Id: elsarticle.dtx 19 2009-12-17 07:07:52Z rishi $
+%% $Id: elsarticle.cls,v 1.20 2008-10-13 04:24:12 cvr Exp $
 %%
  \def\RCSfile{elsarticle}%
- \def\RCSversion{1.20b}%
+ \def\RCSversion{1.2.0}%
  \def\RCSdate{2009/09/17}%
  \def\@shortjnl{\relax}
  \def\@journal{Elsevier Ltd} \def\@company{Elsevier Ltd}
@@ -216,7 +216,6 @@
       }%
     \def\authorsep{\unskip,\space}%
     \global\let\@fnmark\@empty
-    \global\let\@corref\@empty
     \global\let\sep\@empty}%
     \@eadauthor={#1}
 }
@@ -746,33 +745,23 @@
 \@makeother\=
 }{}}
 %%
-\def\appendixname{Appendix }
 \renewcommand\appendix{\par
   \setcounter{section}{0}%
   \setcounter{subsection}{0}%
   \setcounter{equation}{0}
   \gdef\thefigure{\@Alph\c@section.\arabic{figure}}%
   \gdef\thetable{\@Alph\c@section.\arabic{table}}%
-  \gdef\thesection{\appendixname~\@Alph\c@section}%
+  \gdef\thesection{\appendixname\@Alph\c@section}%
   \@addtoreset{equation}{section}%
   \gdef\theequation{\@Alph\c@section.\arabic{equation}}%
-  \addtocontents{toc}{\string\let\string\numberline\string\tmptocnumberline}{}{}
 }
-
-%%%% \numberline width calculation for appendix.
-\newdimen\appnamewidth
-\def\tmptocnumberline#1{%
-   \setbox0=\hbox{\appendixname}
-   \appnamewidth=\wd0
-   \addtolength\appnamewidth{2.5pc}
-   \hb@xt@\appnamewidth{#1\hfill}
-}
+\def\appendixname{Appendix }
 
 %% Added for work with amsrefs.sty
 
 \@ifpackageloaded{amsrefs}%
   {}
-  {%\let\bibsection\relax%
+  {\let\bibsection\relax%
   \AtBeginDocument{\def\cites@b#1#2,#3{%
     \begingroup[%
         \toks@{\InnerCite{#2}#1}%
@@ -780,30 +769,6 @@
         \cites@c#3%
 }}}
 %%
-%% Added for avoiding clash with cleveref.sty
-
-\@ifpackageloaded{cleveref}%
- {}
- {\def\tnotetext[#1]#2{\g@addto@macro\@tnotes{%
-    \refstepcounter{tnote}%
-    \immediate\write\@auxout{\string\Newlabel{#1}{\thetnote}}
-    \def\thefootnote{\ifcase\c@tnote\or\ding{73}\or\ding{73}\ding{73}\fi}%
-    \footnotetext{#2}}}
-%%%
-  \def\fntext[#1]#2{\g@addto@macro\@fnotes{%
-    \refstepcounter{fnote}%
-    \immediate\write\@auxout{\string\Newlabel{#1}{\thefnote}}
-    \def\thefootnote{\thefnote}%
-    \global\setcounter{footnote}{\thefnote}%
-    \footnotetext{#2}}}
-%%%
-  \def\cortext[#1]#2{\g@addto@macro\@cornotes{%
-    \refstepcounter{cnote}%
-    \immediate\write\@auxout{\string\Newlabel{#1}{\thecnote}}
-    \def\thefootnote{\ifcase\thecnote\or$\ast$\or
-    $\ast\ast$\fi}%
-    \footnotetext{#2}}}
-}
 \endinput
 %%
 %% End of file `elsarticle.cls'.

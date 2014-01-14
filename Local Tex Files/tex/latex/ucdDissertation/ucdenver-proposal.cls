@@ -30,6 +30,8 @@
 \RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,geometry,extramarks,lastpage,chngpage}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fancyhdr}
+\RequirePackage{framed}
+\RequirePackage{appendix}
 
 %%
 %% The following preamble elements are required to properly create
@@ -52,6 +54,8 @@
 
 %% hack to make prevent page numbers from restarting in TOC
 \newcounter{fmpage}
+\newcounter{theorem}
+\newcounter{lemma}
 
 %% set margins
 \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
@@ -87,7 +91,7 @@
 \begin{center}
   {\LARGE\bf\@title} \\[0.5in]
   by \\
-  \@authorFirst{} \@authorMiddle{} \@authorLast{} \\
+  \@authorFirst{}\ \@authorMiddle{}\ \@authorLast{} \\
   \@education \\[3in] 
   A dissertation proposal submitted to the \\
   Faculty of the Graduate School of the \\
@@ -106,8 +110,8 @@
   \vspace*{\fill}
   \begin{center}
     This dissertation proposal for the degree of 
-    \@program by \\
-    \@authorFirst \@authorMiddle \@authorLast \\
+    \@program\ by \\
+    \@authorFirst\ \@authorMiddle\ \@authorLast \\
     is being submitted for approval \\
     by \\[3in]
     \@committeeChair, Chair \\
@@ -150,6 +154,26 @@
 
   \setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
+}
+
+
+%% Theorems, lemmas, and proofs
+
+%% theorems
+\newenvironment{theorem}{%
+    \setcounter{lemma}{1}%
+    \refstepcounter{theorem}
+    \medskip
+    \noindent{\emph{Theorem \thetheorem}.}%
+}{}
+\renewcommand*\thetheorem{\thesection.\arabic{theorem}}
+
+\newenvironment{problem}{\begin{framed}\begin{bfseries}}{\end{bfseries}\end{framed}\vspace{11pt}}
+
+%% Proofs
+\newenvironment{proof}{%
+    \medskip
+    \noindent\emph{Proof}\vspace{\z@}
 }
 
 %% colors
@@ -206,6 +230,10 @@
     \quotation
 }
 
+%% appendix
+
+
+
 
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
@@ -229,7 +257,7 @@
   \newpage%
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\thechapter\space #1}
-  {\begin{center}\textbf{CHAPTER \thechapter \\ #2}\end{center}} \nopagebreak
+  {\begin{center}\textbf{\MakeUppercase\chaptername\ \thechapter \\ #2}\end{center}} \nopagebreak
   \vskip \postMskip \nopagebreak
   }
 \newcommand{\ucdchapternn}[1]{\newpage%
@@ -291,7 +319,8 @@
 \renewcommand{\subsection}{\secdef \ucdsubsec \ucdsubsecnn}
 \renewcommand{\subsubsection}{\secdef \ucdsubsubsec \ucdsubsubsecnn}
 
-
+% appendix chapters
+\renewcommand\appendixname{APPENDIX}
 
 %%
 %% End of file `ucdenver-proposal.cls'.
