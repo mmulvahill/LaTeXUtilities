@@ -1,7 +1,5 @@
-\batchmode
-\makeatletter
-\def\input@path{{\string"C:/Users/kreidles/Documents/My Dropbox/Mixed Model Project/Latex/lyx/knitrLyxExample/\string"/}}
-\makeatother
+%% LyX 2.0.5.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
 \documentclass[english]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
@@ -11,13 +9,22 @@
 <<setup, echo=FALSE, cache=FALSE>>=
 #source('knitrTestChunk.R')
 read_chunk('knitrTestChunk.R')
+library(xtable)
 @
 
-More knitr stuff
 
-<<echo=FALSE, cache=FALSE, comment="">>=
-x=1:10
-cat mean(x)
+\section{More knitr stuff}
+
+jkshdcjkshdc sdjkchsdc 
+
+
+\subsection{jshdcjkshdc}
+
+<<echo=FALSE, cache=FALSE, comment="", results='asis'>>=
+x<-1:10
+y<-x^2
+mytable <- data.frame(x,y)
+xtable(caption="My Caption", mytable, digits=0)
 @
 
 TEsting knitr . Here is a citation\citep{coffey_properties_2003}
@@ -31,6 +38,6 @@ Random plot I will cite it \citep{edwards_r2_2008}
 @
 
 \bibliographystyle{plain}
-\bibliography{0C__Users_kreidles_Documents_My_Dropbox_Mixed_M___ect_Latex_lyx_knitrLyxExample_ExportedItems}
+\bibliography{ExportedItems}
 
 \end{document}

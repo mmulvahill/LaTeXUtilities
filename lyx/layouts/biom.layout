@@ -152,7 +152,7 @@ End
 
 Style Keywords
 	Margin			Dynamic
-	LatexType		Command
+	LatexType		Environment
 	LatexName		keywords
 	Category		FrontMatter
 	InTitle			1

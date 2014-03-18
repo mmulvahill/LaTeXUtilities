@@ -1,5 +1,5 @@
 #% Do not delete the line below; configure depends on this
-#  \DeclareLaTeXClass[ucdenver-proposal]{dissertation proposal (UCD Biostatistics)}
+#  \DeclareLaTeXClass[ucdenver-dissertation]{dissertation (UCD Biostatistics)}
 # Article textclass definition file. Taken from initial LyX source code
 # Author : Matthias Ettrich <ettrich@informatik.uni-tuebingen.de>
 # Transposed by Pascal André <andre@via.ecp.fr>
@@ -54,14 +54,21 @@ SecNumDepth             3
 TocDepth                3
 
 Preamble
-  \title{Very Important Title}
-  \author{Student}
+  \title{Dissertation Title}
+  \author{Full name}
+  \authorLast{Last}
+  \authorFirst{First}
+  \authorMiddle{Middle Initial}
+  \education{List author's degrees}
+  \defenseDate{Date of Thesis Defense}
+  \program{PhD Program's Full Name}
   \date{Spring of Some Year}
-  \committeeChair{George, PhD}
-  \advisor{Gracie, PhD}
-  \committeeMembers{Larry, PhD \\
-  Curly, PhD \\
-  Moe, PhD
+  \committeeChair{Committee Chair Name, PhD}
+  \advisor{My Advisor, PhD}
+  \advisorTitle{Advisor's Title}
+  \committeeMembers{Committee Member 1, PhD \\
+  Committee Member 2, PhD \\
+  Committee Member 3, PhD
   }
 EndPreamble
 

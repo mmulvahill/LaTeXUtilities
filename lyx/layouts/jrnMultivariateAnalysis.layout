@@ -1,0 +1,75 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[elsarticle]{elsarticle (Journal of Multivariate Analysis)}
+# Article textclass definition file. Taken from initial LyX source code
+# Author : Matthias Ettrich <ettrich@informatik.uni-tuebingen.de>
+# Transposed by Pascal André <andre@via.ecp.fr>
+# Heavily modifed and enhanced by serveral developers.
+
+Format 35
+Input stdclass.inc
+
+SecNumDepth             3
+TocDepth                3
+
+NoStyle Chapter
+NoCounter chapter
+NoStyle Chapter*
+
+Style Abstract
+	InTitle		      1
+        Margin                Static
+        LatexType             Environment
+        LatexName             abstract
+        Category              FrontMatter
+        NextNoIndent          1
+        LeftMargin            MMM
+        RightMargin           MMM
+        ParIndent             MM
+        ItemSep               0
+        TopSep                0.7
+        BottomSep             0.7
+        ParSep                0
+        Align                 Block
+        LabelType             Centered_Top_Environment
+        LabelString           "Abstract"
+        LabelBottomSep        0.5
+        Font
+          Size                Small
+        EndFont
+        LabelFont
+          Series              Bold
+          Size                Large
+        EndFont
+        HTMLLabelFirst        1
+        HTMLForceCSS          1
+        HTMLStyle
+                div.abstract {
+                        margin: 4ex;
+                }
+                div.abstract_item {
+                        font-size: small;
+                        padding-top: 1ex;
+                }
+                div.abstract_label {
+                        font-weight: bold;
+                }
+        EndHTMLStyle
+End
+
+Style Keyword
+   	InTitle          1
+	LabelType        Static
+	LabelString      "Keywords: "
+        LatexType        Environment
+        LatexName        keyword
+        Category         FrontMatter
+        TopSep                0.7
+        BottomSep             0.7
+        ParSep                0
+        LabelFont
+          Series              Bold
+	EndFont
+	Align            Center
+End
+
+
