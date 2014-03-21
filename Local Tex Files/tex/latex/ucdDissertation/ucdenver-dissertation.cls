@@ -32,6 +32,10 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{framed}
 \RequirePackage{appendix}
+%%\RequirePackage{tocloft}
+
+%%\renewcommand\cftchapdotsep{\cftdotsep}
+%%\renewcommand\cftchapleader{\cftdotfill{\cftchapdotsep}}
 
 %%
 %% The following preamble elements are required to properly create
@@ -42,6 +46,7 @@
 \newcommand{\authorFirst}[1]{\def\@authorFirst{#1}}
 \newcommand{\authorMiddle}[1]{\def\@authorMiddle{#1}}
 \newcommand{\education}[1]{\def\@education{#1}}
+\newcommand{\school}[1]{\def\@school{#1}}
 \newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\advisor}[1]{\def\@advisor{#1}}
 \newcommand{\advisorTitle}[1]{\def\@advisorTitle{#1}}
@@ -49,6 +54,7 @@
 \newcommand{\committeeMembers}[1]{\def\@committeeMembers{#1}}
 \newcommand{\defenseDate}[1]{\def\@defenseDate{#1}}
 \newcommand{\acknowledgements}[1]{\def\@acknowledgements{#1}}
+\newcommand{\dedication}[1]{\def\@dedication{#1}}
 \newcommand{\preface}[1]{\def\@preface{#1}}
 
 
@@ -75,13 +81,14 @@
   \addtocounter{page}{1}
   \makecommitteepage
   \makeprefacepage
+  \makededicationpage
   \makeacknowledgementspage
   \doublespacing
   \tableofcontents
   \newpage
-  \listoffigures
-  \newpage
   \listoftables
+  \newpage
+  \listoffigures
   \newpage
   \pagenumbering{arabic}
   \setcounter{page}{1}
@@ -91,17 +98,18 @@
 
 %% Format the title page
 \renewcommand{\maketitle}{
-\vspace*{\fill}
+\vspace{1in}
 \begin{center}
-  {\LARGE\bf\@title} \\[0.5in]
+  {\LARGE\bf\MakeUppercase{\@title}} \\
   by \\
   \@authorFirst{}\ \@authorMiddle{}\ \@authorLast{} \\
   \@education \\[3in] 
   A thesis submitted to the \\
   Faculty of the Graduate School of the \\
-  University of Colorado, Denver in partial fulfillment \\
+  University of Colorado in partial fulfillment \\
   of the requirements for the degree of \\
-  \@program. \\
+  Doctor of Philosophy \\
+  \@program\ Program \\
   \@date \\
 \end{center} 
 \vspace*{\fill}
@@ -113,10 +121,10 @@
   \newpage
   \vspace*{\fill}
   \begin{center}
-    This thesis for the degree of 
-    \@program\ by \\
+    This thesis for the Doctor of Philosophy degree by \\
     \@authorFirst\ \@authorMiddle\ \@authorLast \\
-    is being submitted for approval \\
+    has been approved for the \\
+    \@program\ Program \\
     by \\[3in]
     \@committeeChair, Chair \\
     \@advisor, Advisor \\
@@ -134,7 +142,7 @@
 \newcommand{\makeprefacepage}{
   \newpage
   \begin{flushleft}
-  \@authorLast{}, \@authorFirst{} \@authorMiddle{} (\@program) \\
+  \@authorLast{}, \@authorFirst{} \@authorMiddle{} (Ph.D., \@program) \\
   \@title \\
   Thesis directed by \@advisorTitle{} \@advisor
   \end{flushleft}
@@ -142,8 +150,11 @@
   \begin{center}
   {\bf PREFACE}\\
   \end{center}
-  \@preface
-
+  \@preface \\[2in]
+  \indent The form and content of this abstract are approved. I recommend its publication.
+  \begin{flushright}
+  \hfill Approved: \@advisor
+  \end{flushright}
   \setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
 }
@@ -155,6 +166,18 @@
   {\bf ACKNOWLEDGEMENTS} \\
   \end{center}
   \@acknowledgements
+
+  \setcounter{fmpage}{\value{page}}%
+  \addtocounter{fmpage}{1}%
+}
+
+%% formatting dedication page
+\newcommand{\makededicationpage}{
+  \newpage
+  \begin{center}
+  {\bf DEDICATION} \\
+  \end{center}
+  \@dedication
 
   \setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
@@ -222,7 +245,6 @@
 
 %% bibliography
 \bibliographystyle{ucdDissertation}
-
 
 
 %% we override the abstract command to avoid a new page
