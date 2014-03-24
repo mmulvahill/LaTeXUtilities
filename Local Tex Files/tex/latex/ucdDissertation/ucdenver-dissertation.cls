@@ -56,8 +56,7 @@
 \newcommand{\preface}[1]{\def\@preface{#1}}
 
 
-%% hack to make prevent page numbers from restarting in TOC
-\newcounter{fmpage}
+%% numbering for theorems
 \newcounter{theorem}
 \newcounter{lemma}
 
@@ -68,7 +67,6 @@
 \fancyhf{} %
 \cfoot{\thepage}                  %
 \renewcommand{\headrulewidth}{0pt} %
-
 
 %% setup the document
 \AtBeginDocument{
@@ -81,7 +79,7 @@
   \makeprefacepage
   \makededicationpage
   \makeacknowledgementspage
-  \doublespacing
+  \newpage
   \tableofcontents
   \newpage
   \listoftables
@@ -98,9 +96,9 @@
 \renewcommand{\maketitle}{
 \vspace{1in}
 \begin{center}
-  {\LARGE\MakeUppercase{\@title}} \\
+  {\MakeUppercase{\@title}} \\
   by \\
-  \@authorFirst{}\ \@authorMiddle{}\ \@authorLast{} \\
+  \MakeUppercase{\@authorFirst{}\ \@authorMiddle{}\ \@authorLast{}} \\
   \@education \\[3in] 
   A thesis submitted to the \\
   Faculty of the Graduate School of the \\
@@ -132,8 +130,6 @@
     Date \underline{\@submitDate}
   \end{flushright}
   \vspace*{\fill}
-  \setcounter{fmpage}{\value{page}}%
-  \addtocounter{fmpage}{1}%
 }
 
 %% formatting committee page
@@ -153,8 +149,6 @@
   \begin{flushright}
   \hfill Approved: \@advisor
   \end{flushright}
-  \setcounter{fmpage}{\value{page}}%
-  \addtocounter{fmpage}{1}%
 }
 
 %% formatting committee page
@@ -164,10 +158,7 @@
   \begin{center}
   {\bf ACKNOWLEDGEMENTS} \\
   \end{center}
-  \indent\indent \@acknowledgements
-
-  \setcounter{fmpage}{\value{page}}%
-  \addtocounter{fmpage}{1}%
+  \indent\indent \@acknowledgements 
 \fi
 }
 
@@ -178,10 +169,7 @@
   \begin{center}
   {\bf DEDICATION} \\
   \end{center}
-  \indent\indent \@dedication
-
-  \setcounter{fmpage}{\value{page}}%
-  \addtocounter{fmpage}{1}%
+  \indent\indent \@dedication \\
 \fi
 }
 
@@ -260,7 +248,7 @@
 }
 \renewcommand\contentsname{CONTENTS}
 \renewcommand\tableofcontents{%
-    \setcounter{page}{\value{fmpage}}%
+    %%\setcounter{page}{\value{fmpage}}%
     \if@twocolumn
       \@restonecoltrue\onecolumn
     \else
@@ -314,7 +302,7 @@
     \ucdlistfigureheader{\textbf{\MakeUppercase\listfigurename}}%
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
-        \doublespacing
+    \doublespacing
     }
     
 %% bibliography
