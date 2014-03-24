@@ -55,12 +55,11 @@ TocDepth                3
 
 Preamble
   \title{Dissertation Title}
-  \author{Full name}
   \authorLast{Last}
   \authorFirst{First}
   \authorMiddle{Middle Initial}
   \education{List author's degrees}
-  \defenseDate{Date of Thesis Defense}
+  \submitDate{Date of Thesis Submission to Graduate School}
   \program{PhD Program's Full Name}
   \date{Spring of Some Year}
   \committeeChair{Committee Chair Name, PhD}

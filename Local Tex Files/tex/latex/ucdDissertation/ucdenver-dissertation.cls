@@ -27,15 +27,13 @@
 \LoadClass[12pt]{report}
 
 %% required packages
-\RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,geometry,extramarks,lastpage,chngpage}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,bindingoffset=0.5in]{geometry}
+\RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,extramarks,lastpage,chngpage}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fancyhdr}
 \RequirePackage{framed}
 \RequirePackage{appendix}
-%%\RequirePackage{tocloft}
 
-%%\renewcommand\cftchapdotsep{\cftdotsep}
-%%\renewcommand\cftchapleader{\cftdotfill{\cftchapdotsep}}
 
 %%
 %% The following preamble elements are required to properly create
@@ -52,7 +50,7 @@
 \newcommand{\advisorTitle}[1]{\def\@advisorTitle{#1}}
 \newcommand{\committeeChair}[1]{\def\@committeeChair{#1}}
 \newcommand{\committeeMembers}[1]{\def\@committeeMembers{#1}}
-\newcommand{\defenseDate}[1]{\def\@defenseDate{#1}}
+\newcommand{\submitDate}[1]{\def\@submitDate{#1}}
 \newcommand{\acknowledgements}[1]{\def\@acknowledgements{#1}}
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
 \newcommand{\preface}[1]{\def\@preface{#1}}
@@ -68,7 +66,7 @@
 
 \pagestyle{fancy} %
 \fancyhf{} %
-\rfoot{\thepage}                  %
+\cfoot{\thepage}                  %
 \renewcommand{\headrulewidth}{0pt} %
 
 
@@ -100,7 +98,7 @@
 \renewcommand{\maketitle}{
 \vspace{1in}
 \begin{center}
-  {\LARGE\bf\MakeUppercase{\@title}} \\
+  {\LARGE\MakeUppercase{\@title}} \\
   by \\
   \@authorFirst{}\ \@authorMiddle{}\ \@authorLast{} \\
   \@education \\[3in] 
@@ -131,7 +129,7 @@
     \@committeeMembers \\[1in]
   \end{center}
   \begin{flushright}
-    \@defenseDate
+    Date \underline{\@submitDate}
   \end{flushright}
   \vspace*{\fill}
   \setcounter{fmpage}{\value{page}}%
@@ -148,9 +146,9 @@
   \end{flushleft}
   \medskip
   \begin{center}
-  {\bf PREFACE}\\
-  \end{center}
-  \@preface \\[2in]
+  {\bf ABSTRACT}\\
+  \end{center} 
+  \indent\indent \@preface \\[2in]
   \indent The form and content of this abstract are approved. I recommend its publication.
   \begin{flushright}
   \hfill Approved: \@advisor
@@ -161,26 +159,30 @@
 
 %% formatting committee page
 \newcommand{\makeacknowledgementspage}{
+\ifdefined\@acknowledgements
   \newpage
   \begin{center}
   {\bf ACKNOWLEDGEMENTS} \\
   \end{center}
-  \@acknowledgements
+  \indent\indent \@acknowledgements
 
   \setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
+\fi
 }
 
 %% formatting dedication page
 \newcommand{\makededicationpage}{
+\ifdefined\@dedication
   \newpage
   \begin{center}
   {\bf DEDICATION} \\
   \end{center}
-  \@dedication
+  \indent\indent \@dedication
 
   \setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
+\fi
 }
 
 
@@ -221,7 +223,33 @@
     pdfview = {XYZ null null null}
 }
 
-%% table of contents and figures
+%% table of contents 
+\def\mydots{\leaders\hbox{\hfil . \hfil}\hfil}
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\mydots\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+
+
+\renewcommand*\l@section{\vspace{12pt}\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand*\l@subsection{\vspace{12pt}\@dottedtocline{2}{3.8em}{3.2em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
+
+
+
 \newcommand{\ucdtocchapterlabel}{CHAPTER}
 \newcommand{\ucdtocheader}[1]{\newpage%
   \pdfbookmark[0]{\contentsname}{contents}
@@ -230,7 +258,7 @@
   }%
 
 }
-\renewcommand\contentsname{Table of Contents}
+\renewcommand\contentsname{CONTENTS}
 \renewcommand\tableofcontents{%
     \setcounter{page}{\value{fmpage}}%
     \if@twocolumn
@@ -238,11 +266,57 @@
     \else
       \@restonecolfalse
     \fi
-    \ucdtocheader{\MakeUppercase\contentsname}%
+    \singlespacing
+    \ucdtocheader{\textbf{\MakeUppercase\contentsname}}%
     \@starttoc{toc}%
+    \doublespacing
     \if@restonecol\twocolumn\fi
 }
 
+%% custom list of tables
+\newcommand{\ucdlisttableheader}[1]{\newpage%
+  \pdfbookmark[0]{\listtablename}{TABLES}
+  {\begin{center}#1\end{center}
+  TABLE
+  }%
+}
+\renewcommand\listtablename{TABLES}
+\renewcommand*\l@table{\vspace{12pt}\@dottedtocline{1}{0em}{2.3em}}
+\renewcommand\listoftables{%
+    \singlespacing
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \ucdlisttableheader{\textbf{\MakeUppercase\listtablename}}%
+    \@starttoc{lot}%
+    \if@restonecol\twocolumn\fi
+    \doublespacing
+    }
+    
+%% custom list of figures
+\renewcommand\listfigurename{FIGURES}
+\newcommand{\ucdlistfigureheader}[1]{\newpage%
+  \pdfbookmark[0]{\listfigurename}{FIGURES}
+  {\begin{center}#1\end{center}
+  FIGURE
+  }%
+}
+\renewcommand*\l@figure{\vspace{12pt}\@dottedtocline{1}{0em}{2.3em}}
+\renewcommand\listoffigures{%
+    \singlespacing
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \ucdlistfigureheader{\textbf{\MakeUppercase\listfigurename}}%
+    \@starttoc{lof}%
+    \if@restonecol\twocolumn\fi
+        \doublespacing
+    }
+    
 %% bibliography
 \bibliographystyle{ucdDissertation}
 
@@ -257,9 +331,10 @@
 }
 
 %% appendix
-
-
-
+\newcommand\ucdappendix{%
+    \appendix
+    \addtocontents{toc}{\vspace{12pt}\noindent APPENDIX \par}
+}
 
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
@@ -282,8 +357,8 @@
 \newcommand{\ucdchapter}[2][default]{
   \newpage%
   \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{\thechapter\space #1}
-  {\begin{center}\textbf{\MakeUppercase\chaptername\ \thechapter \\ #2}\end{center}} \nopagebreak
+  \addcontentsline{toc}{chapter}{\thechapter.\space #1}
+  {\begin{center}\textbf{\MakeUppercase\@chapapp\ \thechapter \\ #2}\end{center}} \nopagebreak
   \vskip \postMskip \nopagebreak
   }
 \newcommand{\ucdchapternn}[1]{\newpage%
@@ -345,8 +420,6 @@
 \renewcommand{\subsection}{\secdef \ucdsubsec \ucdsubsecnn}
 \renewcommand{\subsubsection}{\secdef \ucdsubsubsec \ucdsubsubsecnn}
 
-% appendix chapters
-\renewcommand\appendixname{APPENDIX}
 
 %%
 %% End of file `ucdenver-dissertation.cls'.
