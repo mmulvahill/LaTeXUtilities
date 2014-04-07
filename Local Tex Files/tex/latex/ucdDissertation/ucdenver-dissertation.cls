@@ -28,12 +28,14 @@
 
 %% required packages
 \usepackage[left=1in,top=1in,right=1in,bottom=1in,bindingoffset=0.5in]{geometry}
+\usepackage[font=singlespacing]{caption}
+\usepackage[raggedright]{titlesec}
 \RequirePackage{setspace,savesym,amsmath,graphicx,color,hyperref,extramarks,lastpage,chngpage}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fancyhdr}
 \RequirePackage{framed}
 \RequirePackage{appendix}
-
+ 
 
 %%
 %% The following preamble elements are required to properly create
@@ -144,7 +146,7 @@
   \begin{center}
   {\bf ABSTRACT}\\
   \end{center} 
-  \indent\indent \@preface \\[2in]
+  \hskip \parindent \@preface \\[2in]
   \indent The form and content of this abstract are approved. I recommend its publication.
   \begin{flushright}
   \hfill Approved: \@advisor
@@ -158,7 +160,7 @@
   \begin{center}
   {\bf ACKNOWLEDGEMENTS} \\
   \end{center}
-  \indent\indent \@acknowledgements 
+  \hskip \parindent \@acknowledgements 
 \fi
 }
 
@@ -166,10 +168,9 @@
 \newcommand{\makededicationpage}{
 \ifdefined\@dedication
   \newpage
-  \begin{center}
-  {\bf DEDICATION} \\
-  \end{center}
-  \indent\indent \@dedication \\
+  \vspace*{\fill}
+  \hskip \parindent \@dedication \\
+  \vspace*{\fill}
 \fi
 }
 
@@ -210,21 +211,26 @@
     pdfpagemode = {UseOutlines},
     pdfview = {XYZ null null null}
 }
+\urlstyle{same}
 
 %% table of contents 
-\def\mydots{\leaders\hbox{\hfil . \hfil}\hfil}
+\renewcommand{\@tocrmarg}{2.55em plus1fil}
 \renewcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
     \vskip 1.0em \@plus\p@
     \setlength\@tempdima{1.5em}%
     \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode
+      \parindent \z@ \rightskip \@tocrmarg
+      \parfillskip -\rightskip
+      \leavevmode 
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      #1\nobreak\mydots\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      #1\nobreak
+      \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill%
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
       \penalty\@highpenalty
     \endgroup
   \fi}
@@ -324,6 +330,18 @@
     \addtocontents{toc}{\vspace{12pt}\noindent APPENDIX \par}
 }
 
+%% footnote size
+\let\footnotesize\normalsize
+\renewcommand\footnoterule{%
+  \vspace{12pt}
+  \kern-3\p@
+  \hrule\@width.4\columnwidth
+  \kern2.6\p@}
+  
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+  
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
 \newlength{\preLskip}
@@ -347,13 +365,13 @@
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\thechapter.\space #1}
   {\begin{center}\textbf{\MakeUppercase\@chapapp\ \thechapter \\ #2}\end{center}} \nopagebreak
-  \vskip \postMskip \nopagebreak
+  \vskip \postSskip \nopagebreak
   }
 \newcommand{\ucdchapternn}[1]{\newpage%
   \refstepcounter{chapternn}% -- required to make pdf bookmarks work
   \addcontentsline{toc}{chapter}{#1}
   {\begin{center}\textbf{#1}\end{center}} \nopagebreak
-  \vskip \postMskip \nopagebreak
+  \vskip \postSskip \nopagebreak
 }
 
 
@@ -371,34 +389,33 @@
   \vskip \postMskip \nopagebreak}
 
 % section
-\newcommand{\ucdsec}[2][default]{
-  \vskip \preXLskip%
+\newcommand{\ucdsec}[2][default]{%
   \refstepcounter{section}%
   \addcontentsline{toc}{section}{\thesection\space #1}
-  {\@afterindentfalse\@afterheading\singlespacing\textbf{\Large \thesection\space #2}} \nopagebreak
-  \vskip \postMskip \nopagebreak
+  {\@afterindentfalse\@afterheading\singlespacing\textbf{\thesection\space #2}} \nopagebreak
+  \vskip \postSskip \nopagebreak
   }
-\newcommand{\ucdsecnn}[1]{\vskip \preXLskip%
-  {\@afterindentfalse\@afterheading\singlespacing\textbf{\Large #1}} \nopagebreak
-  \vskip \postMskip \nopagebreak}
+\newcommand{\ucdsecnn}[1]{%
+  {\@afterindentfalse\@afterheading\singlespacing\textbf{#1}} \nopagebreak
+  \vskip \postSskip \nopagebreak}
 
 % subsection
-\newcommand{\ucdsubsec}[2][default]{\vskip \preMskip%
+\newcommand{\ucdsubsec}[2][default]{%
   \refstepcounter{subsection}%
   \addcontentsline{toc}{subsection}{\thesubsection\space #1}
-  {\@afterindentfalse\@afterheading\singlespacing\textbf{\large \thesubsection\space #2}} \nopagebreak
+  {\@afterindentfalse\@afterheading\singlespacing\textbf{\thesubsection\space #2}} \nopagebreak
   \vskip \postSskip \nopagebreak}
-\newcommand{\ucdsubsecnn}[1]{\vskip \preMskip%
-  {\@afterindentfalse\@afterheading\singlespacing\textbf{\large #1}} \nopagebreak
+\newcommand{\ucdsubsecnn}[1]{%
+  {\@afterindentfalse\@afterheading\singlespacing\textbf{#1}} \nopagebreak
   \vskip \postSskip \nopagebreak}
 
 % subsubsection
-\newcommand{\ucdsubsubsec}[2][default]{\vskip \preSskip%
+\newcommand{\ucdsubsubsec}[2][default]{%
   \refstepcounter{subsubsection}%
   \addcontentsline{toc}{subsubsection}{\thesubsubsection\space #1}
   {\@afterindentfalse\@afterheading\singlespacing\normalsize\textbf{\thesubsubsection\space #2}} \nopagebreak
   \vskip \postSskip \nopagebreak}
-\newcommand{\ucdsubsubsecnn}[1]{\vskip \preSskip%
+\newcommand{\ucdsubsubsecnn}[1]{%
   {\@afterindentfalse\@afterheading\singlespacing{\normalsize\textbf #1}} \nopagebreak
   \vskip \postSskip \nopagebreak}
   
