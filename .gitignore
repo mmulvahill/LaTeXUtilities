@@ -1,0 +1,12 @@
+# list the files to ignore in the directory.  An empty .gitignore file is added
+# to each directory such that during a pull the directory structure will come
+# down, even the 'empty' directories
+#
+#    
+# for vim backup files
+*.swp
+*.swo
+
+# temp libreoffice files
+*.~lock*
+
