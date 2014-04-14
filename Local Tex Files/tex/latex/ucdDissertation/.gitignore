@@ -1,0 +1,7 @@
+# resulting files from pdflatex which should be ignored.
+*.aux
+*.log
+*.lof
+*.lot
+*.out
+*.toc
