@@ -1,0 +1,11 @@
+#% Do not delete the line below; configure depends on this      
+#  \DeclareLaTeXClass[imsart]{article (Institute of Mathematical Statistics)}
+# Institute of Mathematical Statistics (IMS) article textclass definition file
+# Author: Andreas Rosenblad <andreas.rosenblad@ltv.se>
+# License: GNU GPL version 2 or later
+# IMS LaTeX files can be downloaded from http://www.e-publications.org/ims/support/
+
+Format 4
+
+# Read the definitions from article.layout
+Input article.layout
