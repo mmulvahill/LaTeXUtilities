@@ -44,11 +44,13 @@
 \newcommand{\education}[1]{\def\@education{#1}}
 \newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\advisor}[1]{\def\@advisor{#1}}
+\newcommand{\coadvisor}[1]{\def\@coadvisor{#1}}
 \newcommand{\advisorTitle}[1]{\def\@advisorTitle{#1}}
+\newcommand{\coadvisorTitle}[1]{\def\@coadvisorTitle{#1}}
 \newcommand{\committeeChair}[1]{\def\@committeeChair{#1}}
 \newcommand{\committeeMembers}[1]{\def\@committeeMembers{#1}}
 \newcommand{\proposalDate}[1]{\def\@proposalDate{#1}}
-\newcommand{\acknowledgements}[1]{\def\@acknowledgements{#1}}
+%\newcommand{\acknowledgements}[1]{\def\@acknowledgements{#1}}
 \newcommand{\preface}[1]{\def\@preface{#1}}
 
 
@@ -72,10 +74,10 @@
   \begin{titlepage}
   \maketitle
   \end{titlepage}
-  \addtocounter{page}{1}
+  %\addtocounter{page}{1}
   \makecommitteepage
   \makeprefacepage
-  \makeacknowledgementspage
+  %\makeacknowledgementspage
   \doublespacing
   \tableofcontents
   \newpage
@@ -87,7 +89,7 @@
 
 %% Format the title page
 \renewcommand{\maketitle}{
-\vspace*{\fill}
+%\vspace*{\fill}
 \begin{center}
   {\LARGE\bf\@title} \\[0.5in]
   by \\
@@ -100,14 +102,14 @@
   \@program. \\
   \@date \\
 \end{center} 
-\vspace*{\fill}
+%\vspace*{\fill}
   
 }
 
 %% formatting committee page
 \newcommand{\makecommitteepage}{
   \newpage
-  \vspace*{\fill}
+  %\vspace*{\fill}
   \begin{center}
     This dissertation proposal for the degree of 
     \@program\ by \\
@@ -116,35 +118,39 @@
     by \\[3in]
     \@committeeChair, Chair \\
     \@advisor, Advisor \\
+    \ifdefined\@coadvisor 
+      \@coadvisor, Advisor \\ 
+    \else  
+    \fi
     \@committeeMembers \\[1in]
   \end{center}
   \begin{flushright}
     \@proposalDate
   \end{flushright}
-  \vspace*{\fill}
-  \setcounter{fmpage}{\value{page}}%
+  %\vspace*{\fill}
+  %\setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
 }
 
-%% formatting committee page
+%% formatting preface page
 \newcommand{\makeprefacepage}{
   \newpage
   \begin{flushleft}
   \@authorLast{}, \@authorFirst{} \@authorMiddle{} (\@program) \\
   \@title \\
-  Thesis directed by \@advisorTitle{} \@advisor
+  %Thesis directed by \@advisorTitle{} \@advisor 
+  Thesis directed by \@advisorTitle{} \@advisor \ifdefined\@coadvisor {} and \@coadvisorTitle{} \@coadvisor \else \fi
   \end{flushleft}
   \medskip
   \begin{center}
-  {\bf PREFACE}\\
+  {\bf ABSTRACT}\\
   \end{center}
-  \@preface
-
-  \setcounter{fmpage}{\value{page}}%
+  \@preface 
+  %\setcounter{fmpage}{\value{page}}%
   \addtocounter{fmpage}{1}%
 }
 
-%% formatting committee page
+%% formatting acknowledgement page
 \newcommand{\makeacknowledgementspage}{
   \newpage
   \begin{center}
@@ -217,7 +223,7 @@
 }
 
 %% bibliography
-\bibliographystyle{ucdDissertation}
+%\bibliographystyle{ucdDissertation}
 
 
 
