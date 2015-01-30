@@ -7,13 +7,18 @@
 %% Graduate School rules prior to using.
 %%
 %% Author: Sarah Kreidler
+%%         Peter DeWitt
 %%
 %%
 %% Package 'ucdenver-dissertation' to use with LaTeX2e 
 %% License: GPL-2
 %% Copyright: (C) University of Colorado Denver
 %% Author: Sarah Kreidler
-%% Please report errors to sarah.kreidler@ucdenver.edu
+%% Please report errors to sarah.kreidler@ucdenver.edu, and/or
+%% peter.dewitt@ucdenver.edu
+%%
+%% Change log
+%% 13 Apr 2014 - added vspace*{\fill} to the listofigures to center vertically
 %%
 \def\fileversion{1.0}
 \def\filename{ucdenver-dissertation}
@@ -293,6 +298,7 @@
 \renewcommand\listfigurename{FIGURES}
 \newcommand{\ucdlistfigureheader}[1]{\newpage%
   \pdfbookmark[0]{\listfigurename}{FIGURES}
+\vspace*{\fill}
   {\begin{center}#1\end{center}
   FIGURE
   }%
@@ -308,6 +314,7 @@
     \ucdlistfigureheader{\textbf{\MakeUppercase\listfigurename}}%
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
+\vspace*{\fill}
     \doublespacing
     }
     

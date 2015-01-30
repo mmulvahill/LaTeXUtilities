@@ -1,0 +1,12 @@
+# resulting files from pdflatex which should be ignored.
+example.aux
+example.log
+example.lof
+example.lot
+example.out
+example.toc
+example.bbl
+example.blg
+
+# ignore the symbolic link to the .bst file
+ucdDissertation.bst
