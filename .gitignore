@@ -1,12 +1,39 @@
-# list the files to ignore in the directory.  An empty .gitignore file is added
-# to each directory such that during a pull the directory structure will come
-# down, even the 'empty' directories
-#
-#    
-# for vim backup files
+# files for git to ignore.  these will not be copied to repository
+#  vim temp files
 *.swp
 *.swo
+*~
+#  libreoffice temp files
+.~lock*
+#  rstudio project file
+#*.Rproj
+#  osx dir metadata
+.DS_Store
+#  rstudio project temp files
+.Rproj.user
+#  rstudio command history
+.Rhistory
+#  rstudio osx history
+.Rapp.history
+#  R's directory workspace - want fresh workspace each session
+.Rdata
+# knit/latex temp files
+*-concordance.tex
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.snm
+*.nav
+*.dvi
+*.tdo
 
-# temp libreoffice files
-*.~lock*
-
+datastore
+output
